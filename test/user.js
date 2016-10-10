@@ -1,7 +1,16 @@
 var should = require('should');
-describe('my test series', {
-	it('should do smth', function(done){...})
-	it('should do smth else', function(done){...})
-})
+var user = require('../src/user.js');
 
-./node_modules/.bin/mocha test .user.js`
+describe('my first test list', function() {
+  it('should get a user w/ right parameters', function(done) {
+    // do smth user
+    user.get("jeremy", function(res) {
+      res.should.equal("jeremy");
+      done();;
+    })
+  })
+
+  //
+
+  //...
+})
