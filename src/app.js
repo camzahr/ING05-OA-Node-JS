@@ -1,6 +1,6 @@
 //import a module
 var http = require('http');
-var users = require('./users.js');
+var users = require('./user.js');
 //Declare an http server
 http.createServer(function(req, res){
   users.get("Jeremy", function(id){
