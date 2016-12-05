@@ -1,6 +1,6 @@
 # Import a module
 http = require 'http'
-user = require './user.coffee'
+user = require './user'
 url = require 'url'
 fs = require 'fs'
 
