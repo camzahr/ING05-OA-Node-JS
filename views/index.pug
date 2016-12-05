@@ -1,0 +1,38 @@
+extends layout
+
+block head
+  script(type="text/javascript" src="js/jquery-3.1.1.min.js" charset="utf-8")
+  script(type="text/javascript" src="js/bootstrap.js" charset="utf-8")
+  script(type="text/javascript" src="js/d3.min.js" charset="utf-8")
+  link(rel='stylesheet', href='css/bootstrap.css')
+  link(rel='stylesheet', href='css/style.css')
+
+block content
+  script
+    :coffee-script
+      $('#show-metrics').click (e) ->
+        e.preventDefault()
+        $.getJSON "/metrics.json", {}, (data) ->
+          content = ""
+          for d in data
+            content += "<p>timestamp: #{d.timestamp}, value: #{d.value}</p>"
+            $('#metrics').append content
+  div.container
+    div.col-md-6.col-md-offset-3
+      p hello world !
+      button(type="button" class="btn btn-success" id="show-metrics") Bring the metrics
+      #metrics
+  form(action="action_page.php")
+    div.class="imgcontainer"
+      img(src="img_avatar2.png" alt="Avatar" class="avatar")
+        div(class="container")
+          label Username
+          input(type="text" placeholder="Enter Username" name="uname" required)
+          label Password
+          input(type="password" placeholder="Enter Password" name="psw" required)
+          button(type="submit") Login
+          input(type="checkbox" checked="checked") Remember me
+        div(class="container" style="background-color:#f1f1f1">
+          button(type="button" class="cancelbtn")Cancel
+          span(class="psw")Forgot
+            a(href="#")>password?
