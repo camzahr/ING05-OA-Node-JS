@@ -19,14 +19,22 @@ app.listen(app.get('port'), function() {});
 
 console.log("server listening on " + (app.get('port')));
 
-http.createServer(function(req, res) {
-  var path;
-  path = url.parse(req.url).pathname;
-  return user.get("jeremy", function(id) {
-    res.writeHead(200, {
-      'Content-Type': 'text/plain'
-    });
-    return res.end("hello " + id);
+app.set('views', __dirname + "/../views");
+
+app.set('view engine', 'pug');
+
+app.get('/', function(req, res) {
+  return res.render('index', {});
+});
+
+app.use('/', express["static"](__dirname + "/../public"));
+
+app.get('/metrics.json', function(req, res) {
+  return metrics.get(function(err, data) {
+    if (err) {
+      throw next(err);
+    }
+    return res.status(200).json(data);
   });
 }).listen(1337, '127.0.0.1', function() {
   return console.log("running on 127.0.0.1:1337");
