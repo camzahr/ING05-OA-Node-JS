@@ -4,6 +4,15 @@ user = require './user'
 url = require 'url'
 fs = require 'fs'
 
+express = require 'express'
+
+app = express()
+app.set 'port', 1337
+
+app.listen app.get('port'), () ->
+console.log "server listening on #{app.get 'port'}"
+
+
 # Declare an http server
 http.createServer (req, res) ->
 

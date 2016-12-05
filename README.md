@@ -1,2 +1,4 @@
 ING05 OA 
-Jérémy Camilleri
+Jérémy Camilleri & Robin Sabatier
+
+Course : https://github.com/adaltas/ece-nodejs/
