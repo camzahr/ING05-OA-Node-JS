@@ -19,7 +19,7 @@ block content
 			$('#show-metrics').click (e) ->
 				e.preventDefault()
 				$.getJSON "/metrics.json", {}, (data) ->
-					content =""
+					content = ""
 					for d in data
 						content +="timestamp: #{d.timestamp}, value: #{d.value}"
 						$('#metrics').append content
