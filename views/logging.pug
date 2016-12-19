@@ -1,0 +1,13 @@
+extend layout
+
+block head
+  script(src="/socket.io/socket.io.js")
+
+block content
+  #content.container
+  script
+    :coffee-script
+      socket = io.connect 'http://localhost:1337'
+
+      socket.on 'log', (msg) ->
+        $('#content').append('<p> url : ' + msg.url + ' | username : ' + msg.username + '</p>')

@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .container
+    .jumbotron.margin-top
+      #form
+        p Please create yout account
+        hr
+        form#login(action='/signup', method="post")
+          .form-group
+            label Username
+            input(type='text', name="username")
+          .form-group
+            label Password
+            input(type='password', name="password")
+          button#login_submit.btn.btn-primary.btn-block(type='submit')
+            i.icon-ok.icon-white
+            |  Create
+          hr

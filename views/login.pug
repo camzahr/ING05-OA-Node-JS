@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .container
+    .jumbotron.margin-top
+      #form
+        p Please login to your account
+        hr
+        form#login(action='/login', method="post")
+          .form-group
+            label Username
+            input(type='text', name="username")
+          .form-group
+            label Password
+            input(type='password', name="password")
+          button#login_submit.btn.btn-primary.btn-block(type='submit')
+            i.icon-ok.icon-white
+            |  Connect
+          hr
+        form(action='/signup', method="get")
+          button.btn.btn-success.btn-block(type='submit') Create an account
