@@ -17,15 +17,10 @@ block content
           button.btn.btn-danger(href='/logout' onClick='document.location.href="/logout"') Logout
     .flexible-space-line
       h2 Hello, #{name} !
-      button(type='button' class='btn-success btn' id="show-metrics") Bring the metrics
+      button(type="button" class="btn btn-success" id="show-metrics") Bring the metrics
+      #metrics
   .container
     .row
-      .col-md-8.col-lg-8.col-sm-12
-        .panel.panel-default
-          .panel-heading.flexible-space-line Metrics
-            select(name="batch")#select-batch
-          .panel-body.panel-body-center
-            canvas(width="400", height="400")#metrics
       .col-md-4.col-lg-4.col-sm-12
           .panel.panel-default
             .panel-heading Add a metric batch
@@ -35,12 +30,17 @@ block content
                   label Your metric batch
                   textarea.form-control(cols='40', rows="5")
                 button#metric_submit.btn.btn-success.btn-block(type='submit') Add metrics 
-      .col-md-4.col-lg-4.col-sm-12
-          .panel.panel-default
-            .panel-heading Remove a metric batch
-            .panel-body
-              form#delete-form
-                select(name="metric")#select-metric
-                input(value="Delete").btn.btn-danger#delete-button
 
+
+
+
+  script
+    :coffee-script
+      $('#show-metrics').click (e) ->
+        e.preventDefault()
+        $.getJSON "/user-metric", {}, (data) ->
+          content = ""
+          for d in data
+            content +="timestamp: #{d.timestamp}, value: #{d.value}"
+            $('#metrics').append content
 

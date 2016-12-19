@@ -4,18 +4,6 @@ var db;
 db = require('./db')(__dirname + "/../db/metrics");
 
 module.exports = {
-
-  /*
-    `put(id, metrics, callback)`
-    -----------
-    add one or several metrics associated with id
-    
-    `id`: id of the metrics to add
-    `metrics`: array containing the metrics to save
-    `callback`: callback function
-  
-    key : metric:id:timestamp
-   */
   put: function(id, metrics, callback) {
     var i, len, m, timestamp, value, ws;
     if (!metrics.length) {
@@ -34,17 +22,6 @@ module.exports = {
     }
     return ws.end();
   },
-
-  /*
-    `get(id, callback)`
-    -----------
-    return metrics associated to the id
-    
-    `id`: id of the metrics
-    `callback`: callback function
-  
-    key : metric:id:timestamp
-   */
   get: function(id, callback) {
     var metrics, rs;
     metrics = [];
@@ -65,15 +42,6 @@ module.exports = {
       return callback(null, metrics);
     });
   },
-
-  /*
-    `remove(id, callback)`
-    -----------
-    remove metrics associated to the id
-    
-    `id`: id of the metrics
-    `callback`: callback function
-   */
   remove: function(id, callback) {
     return this.get(id, function(err, metrics) {
       var i, key, len, m, toDel;

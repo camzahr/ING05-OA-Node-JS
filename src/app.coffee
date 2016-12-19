@@ -144,8 +144,6 @@ app.use (req,res,next) ->
       username: req.session.username || 'anonymous'
   next()
 
-
-
 authCheck = (req, res, next) ->
   console.log('log : ', req.session.loggedIn)
   unless req.session.loggedIn == true

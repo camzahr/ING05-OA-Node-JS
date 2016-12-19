@@ -28,30 +28,6 @@ router.get("/", function(req, res) {
   }
 });
 
-router.get("/history", function(req, res) {
-  return res.json(req.session.history);
-});
-
-router.get('/user/:username', function(req, res) {
-  return user.get(req.params.username, function(err, value) {
-    if (err) {
-      return res.status(404).send(err);
-    } else {
-      return res.status(200).json(value);
-    }
-  });
-});
-
-router["delete"]('/user/:username', function(req, res) {
-  return user.remove(req.params.username, function(err) {
-    if (err) {
-      return res.status(404).send(err);
-    } else {
-      return res.status(200).send();
-    }
-  });
-});
-
 router.get("/hello/:name", authCheck, function(req, res) {
   return res.render('hello', {
     name: req.params.name

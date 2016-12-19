@@ -1,17 +1,7 @@
 db = require('./db')("#{__dirname}/../db/metrics")
 
 module.exports =
-  ###
-    `put(id, metrics, callback)`
-    -----------
-    add one or several metrics associated with id
-    
-    `id`: id of the metrics to add
-    `metrics`: array containing the metrics to save
-    `callback`: callback function
 
-    key : metric:id:timestamp
-  ###
   put: (id, metrics, callback) ->
     #check that we have an array of metrics
     if !metrics.length
@@ -29,16 +19,6 @@ module.exports =
         value: value
     ws.end()
 
-  ###
-    `get(id, callback)`
-    -----------
-    return metrics associated to the id
-    
-    `id`: id of the metrics
-    `callback`: callback function
-
-    key : metric:id:timestamp
-  ###
   get: (id, callback) ->
     metrics = []
 
@@ -56,14 +36,6 @@ module.exports =
     rs.on 'close', ->
       callback null, metrics
   
-  ###
-    `remove(id, callback)`
-    -----------
-    remove metrics associated to the id
-    
-    `id`: id of the metrics
-    `callback`: callback function
-  ###
   remove: (id, callback) ->
     this.get id, (err, metrics) ->
       if !metrics.length

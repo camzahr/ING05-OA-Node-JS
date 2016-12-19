@@ -4,17 +4,6 @@ var db;
 db = require('./db')(__dirname + "/../db/user");
 
 module.exports = {
-
-  /*
-    get(username, callback)
-    -----------------------
-    get a user based on his username
-    
-    username: user's name
-    callback: callback function
-  
-    key: user:username
-   */
   get: function(username, callback) {
     var rs, user;
     user = {};
@@ -37,18 +26,6 @@ module.exports = {
       return callback(null, user);
     });
   },
-
-  /*
-    save(username, pwd, name, email, callback)
-    -----------------------------------------------
-    save a new user's informations
-  
-    username: user's pseudo (name used to login)
-    pwd: user's password
-    name: user's name
-    email: user's mail
-    callback: callback function
-   */
   save: function(username, pwd, name, email, callback) {
     var ws;
     ws = db.createWriteStream();
@@ -60,15 +37,6 @@ module.exports = {
     });
     return ws.end();
   },
-
-  /*
-    remove(username, callback)
-    --------------------------
-    remove a registered member
-  
-    username: user's pseudo (name used to login)
-    callback: callback function
-   */
   remove: function(username, callback) {
     var toDel;
     toDel = [
